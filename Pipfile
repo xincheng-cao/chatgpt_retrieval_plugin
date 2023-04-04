@@ -83,6 +83,7 @@ weaviate-client = "==3.15.4"
 win32-setctime = "==1.1.0"
 xlsxwriter = "==3.0.9"
 yarl = "==1.8.2"
+pyjwt = "==2.6.0"
 
 [dev-packages]
 
