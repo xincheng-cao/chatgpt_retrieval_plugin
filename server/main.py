@@ -140,3 +140,20 @@ async def startup():
 
 def start():
     uvicorn.run("server.main:app", host="0.0.0.0", port=8000, reload=True)
+
+if __name__=="__main__":
+    '''
+    how to set env vars
+    check @ confs/gen_env_vars.py
+    put in pycharm edit configures : env vars --> server/main.py
+    DATASTORE=milvus;BEARER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA1OTM4MTUsImRpY3RhdG9yIjoiaW5ub3ZhdGlvbl9sYWIifQ.WkxFZf7xoIRICs4D8dsbR35rr6OwUatx0HVULKTd61Y;OPENAI_API_KEY=sk-chaogejinjieyuanqingconggexiaolu
+    
+    how to start according to readme : poetry run start
+    check @ pyproject.toml
+    [tool.poetry.scripts]
+    start = "server.main:start"
+    so...
+    
+    working env: /data1/shiba/chatgpt_retrieval_plugin
+    '''
+    start()
