@@ -84,6 +84,7 @@ win32-setctime = "==1.1.0"
 xlsxwriter = "==3.0.9"
 yarl = "==1.8.2"
 pyjwt = "==2.6.0"
+notebook = "*"
 
 [dev-packages]
 
