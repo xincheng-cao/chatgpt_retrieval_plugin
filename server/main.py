@@ -156,4 +156,5 @@ if __name__=="__main__":
     
     working env: /data1/shiba/chatgpt_retrieval_plugin
     '''
+    os.environ['MILVUS_COLLECTION']='te5t_collection'
     start()

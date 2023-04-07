@@ -143,4 +143,12 @@ async def main():
 
 
 if __name__ == "__main__":
+    '''
+    edit configs
+    
+    parameters: --filepath example.json
+    env variales: DATASTORE=milvus;BEARER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA1OTM4MTUsImRpY3RhdG9yIjoiaW5ub3ZhdGlvbl9sYWIifQ.WkxFZf7xoIRICs4D8dsbR35rr6OwUatx0HVULKTd61Y;OPENAI_API_KEY=sk-chaogejinjieyuanqingconggexiaolu
+    '''
+    import os
+    os.environ['MILVUS_COLLECTION'] = 'te5t_collection'
     asyncio.run(main())
