@@ -87,6 +87,21 @@ async def upsert(
 
 
 @app.post(
+    "/upsert_rec0",
+    response_model=UpsertResponse,
+)
+async def upsert(
+    request: UpsertRequest = Body(...),
+):
+    try:
+        ids = await datastore_rec0.upsert(request.documents)
+        return UpsertResponse(ids=ids)
+    except Exception as e:
+        print("Error:", e)
+        raise HTTPException(status_code=500, detail="Internal Service Error")
+
+
+@app.post(
     "/query",
     response_model=QueryResponse,
 )
