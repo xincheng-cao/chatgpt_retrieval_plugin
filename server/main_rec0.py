@@ -14,6 +14,7 @@ from models.api import (
     UpsertResponse,
 )
 from datastore.factory import get_datastore
+import datastore.factory_rec0 as factory_rec0
 from services.file import get_document_from_file
 
 from models.models import DocumentMetadata, Source
@@ -150,9 +151,12 @@ async def startup():
     global datastore
     datastore = await get_datastore()
 
+    global datastore_rec0
+    datastore_rec0 = await factory_rec0.get_datastore('milvus_rec0')
+
 
 def start():
-    uvicorn.run("server.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("server.main_rec0:app", host="0.0.0.0", port=8000, reload=True)
 
 if __name__=="__main__":
     '''
@@ -170,4 +174,5 @@ if __name__=="__main__":
     working env: /data1/shiba/chatgpt_retrieval_plugin
     '''
     os.environ['MILVUS_COLLECTION']='te5t_collection'
+    os.environ['MILVUS_HOST']='10.200.0.43'
     start()
