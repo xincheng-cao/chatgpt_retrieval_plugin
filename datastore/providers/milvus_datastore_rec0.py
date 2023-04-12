@@ -28,6 +28,7 @@ from models.models import (
 )
 
 MILVUS_COLLECTION = os.environ.get("MILVUS_COLLECTION") or "c" + uuid4().hex
+MILVUS_COLLECTION = 'ctrip_hotel_cols_4_rec0'
 MILVUS_HOST = os.environ.get("MILVUS_HOST") or "localhost"
 MILVUS_PORT = os.environ.get("MILVUS_PORT") or 19530
 MILVUS_USER = os.environ.get("MILVUS_USER")
@@ -94,6 +95,13 @@ SCHEMA_V1 = [
         FieldSchema(name="author", dtype=DataType.VARCHAR, max_length=65535),
         "",
     ),
+
+    # multiple vector fields is not supported!
+    #(
+    #    'coord_vec',
+    #    FieldSchema(name='coord_vec', dtype=DataType.FLOAT_VECTOR, dim=2),
+    #    '',
+    #),
 ]
 
 # V2 schema, remomve the "pk" field

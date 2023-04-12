@@ -2,8 +2,8 @@ from datastore.datastore import DataStore
 import os
 
 
-async def get_datastore() -> DataStore:
-    datastore = os.environ.get("DATASTORE")
+async def get_datastore(datastore:str,) -> DataStore:
+    #datastore = os.environ.get("DATASTORE")
     assert datastore is not None
 
     match datastore:
@@ -23,6 +23,10 @@ async def get_datastore() -> DataStore:
             from datastore.providers.milvus_datastore import MilvusDataStore
 
             return MilvusDataStore()
+        case "milvus_rec0":
+            import datastore.providers.milvus_datastore_rec0 as milvus_datastore_rec0
+
+            return milvus_datastore_rec0.MilvusDataStore()
         case "zilliz":
             from datastore.providers.zilliz_datastore import ZillizDataStore
 
