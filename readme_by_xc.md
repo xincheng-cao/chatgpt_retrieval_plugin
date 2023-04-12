@@ -32,3 +32,12 @@ pytest ./tests/datastore/providers/milvus/test_milvus_datastore.py (run in pycha
 
 ## start server
 @ server/main.py (use pycharm to run, not poetry run start)
+
+## https://platform.openai.com/docs/guides/embeddings
+
+
+### texts2embs
+![](pics/embeding_output_dim_size.png)
+
+### euclidean dist vs cos sim vs dot prod vs l2 norm
+![](pics/l2_vs_cosine.png)
