@@ -4,8 +4,10 @@ import argparse
 import asyncio
 
 from models.models import Document, DocumentMetadata
-from datastore.datastore import DataStore
-from datastore.factory import get_datastore
+#from datastore.datastore import DataStore
+#from datastore.factory import get_datastore
+from datastore.datastore_rec0 import DataStore
+from datastore.factory_rec0 import get_datastore
 from services.extract_metadata import extract_metadata_from_document
 from services.pii_detection import screen_text_for_pii
 
@@ -53,7 +55,7 @@ async def process_json_dump(
                 created_at=created_at,
                 author=author,
             )
-            print("metadata: ", str(metadata))
+            #print("metadata: ", str(metadata))
 
             # update metadata with custom values
             for key, value in custom_metadata.items():
@@ -96,7 +98,7 @@ async def process_json_dump(
         # Get the text of the chunks in the current batch
         batch_documents = documents[i : i + DOCUMENT_UPSERT_BATCH_SIZE]
         print(f"Upserting batch of {len(batch_documents)} documents, batch {i}")
-        print("documents: ", documents)
+        #print("documents: ", documents)
         await datastore.upsert(batch_documents)
 
     # print the skipped items
@@ -135,7 +137,7 @@ async def main():
     extract_metadata = args.extract_metadata
 
     # initialize the db instance once as a global variable
-    datastore = await get_datastore()
+    datastore = await get_datastore(datastore='milvus_rec0')
     # process the json dump
     await process_json_dump(
         filepath, datastore, custom_metadata, screen_for_pii, extract_metadata
@@ -146,7 +148,7 @@ if __name__ == "__main__":
     '''
     edit configs
     
-    parameters: --filepath example.json
+    parameters: --filepath sanya_desc.json
     env variales: DATASTORE=milvus;BEARER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA1OTM4MTUsImRpY3RhdG9yIjoiaW5ub3ZhdGlvbl9sYWIifQ.WkxFZf7xoIRICs4D8dsbR35rr6OwUatx0HVULKTd61Y;OPENAI_API_KEY=sk-chaogejinjieyuanqingconggexiaolu
     '''
     import os
