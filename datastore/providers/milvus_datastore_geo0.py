@@ -16,7 +16,8 @@ from uuid import uuid4
 
 
 from services.date import to_unix_timestamp
-from datastore.datastore import DataStore
+#from datastore.datastore import DataStore
+from datastore.datastore_geo0 import DataStore
 from models.models import (
     DocumentChunk,
     DocumentChunkMetadata,
@@ -28,6 +29,7 @@ from models.models import (
 )
 
 MILVUS_COLLECTION = os.environ.get("MILVUS_COLLECTION") or "c" + uuid4().hex
+MILVUS_COLLECTION='ctrip_hotel_cols_4_geo0'
 MILVUS_HOST = os.environ.get("MILVUS_HOST") or "localhost"
 MILVUS_PORT = os.environ.get("MILVUS_PORT") or 19530
 MILVUS_USER = os.environ.get("MILVUS_USER")
@@ -39,8 +41,8 @@ MILVUS_SEARCH_PARAMS = os.environ.get("MILVUS_SEARCH_PARAMS")
 MILVUS_CONSISTENCY_LEVEL = os.environ.get("MILVUS_CONSISTENCY_LEVEL")
 
 UPSERT_BATCH_SIZE = 100
-OUTPUT_DIM = 1536
-EMBEDDING_FIELD = "embedding"
+OUTPUT_DIM = 2
+EMBEDDING_FIELD = "coord_vec"
 
 
 class Required:
@@ -61,7 +63,7 @@ SCHEMA_V1 = [
     (
         "text",
         FieldSchema(name="text", dtype=DataType.VARCHAR, max_length=65535),
-        Required,
+        '',
     ),
     (
         "document_id",

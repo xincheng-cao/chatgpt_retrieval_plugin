@@ -15,6 +15,7 @@ from models.api import (
 )
 from datastore.factory import get_datastore
 import datastore.factory_rec0 as factory_rec0
+import datastore.factory_geo0 as factory_geo0
 from services.file import get_document_from_file
 
 from models.models import DocumentMetadata, Source
@@ -186,9 +187,12 @@ async def startup():
     global datastore_rec0
     datastore_rec0 = await factory_rec0.get_datastore('milvus_rec0')
 
+    global datastore_geo0
+    datastore_geo0 = await factory_geo0.get_datastore()
+
 
 def start():
-    uvicorn.run("server.main_rec0:app", host="0.0.0.0", port=13000, reload=True)
+    uvicorn.run("server.main_rec0_geo0:app", host="0.0.0.0", port=13000, reload=True)
 
 if __name__=="__main__":
     '''

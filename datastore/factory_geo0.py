@@ -1,4 +1,5 @@
-from datastore.datastore import DataStore
+#from datastore.datastore import DataStore
+from datastore.datastore_geo0 import DataStore
 import os
 
 
@@ -20,9 +21,9 @@ async def get_datastore() -> DataStore:
 
             return WeaviateDataStore()
         case "milvus":
-            from datastore.providers.milvus_datastore import MilvusDataStore
+            import datastore.providers.milvus_datastore_geo0 as milvus_datastore_geo0
 
-            return MilvusDataStore()
+            return milvus_datastore_geo0.MilvusDataStore()
         case "zilliz":
             from datastore.providers.zilliz_datastore import ZillizDataStore
 
