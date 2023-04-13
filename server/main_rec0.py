@@ -118,6 +118,23 @@ async def query_main(
         raise HTTPException(status_code=500, detail="Internal Service Error")
 
 
+@app.post(
+    "/query_rec0",
+    response_model=QueryResponse,
+)
+async def query_main(
+        request: QueryRequest = Body(...),
+):
+    try:
+        results = await datastore_rec0.query(
+            request.queries,
+        )
+        return QueryResponse(results=results)
+    except Exception as e:
+        print("Error:", e)
+        raise HTTPException(status_code=500, detail="Internal Service Error")
+
+
 @sub_app.post(
     "/query",
     response_model=QueryResponse,
@@ -171,7 +188,7 @@ async def startup():
 
 
 def start():
-    uvicorn.run("server.main_rec0:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("server.main_rec0:app", host="0.0.0.0", port=13000, reload=True)
 
 if __name__=="__main__":
     '''

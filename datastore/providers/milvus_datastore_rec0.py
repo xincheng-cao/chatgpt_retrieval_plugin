@@ -17,6 +17,7 @@ from uuid import uuid4
 
 from services.date import to_unix_timestamp
 from datastore.datastore import DataStore
+import datastore.datastore_rec0 as datastore_rec0
 from models.models import (
     DocumentChunk,
     DocumentChunkMetadata,
@@ -109,7 +110,7 @@ SCHEMA_V2 = SCHEMA_V1[1:]
 SCHEMA_V2[4][1].is_primary = True
 
 
-class MilvusDataStore(DataStore):
+class MilvusDataStore(datastore_rec0.DataStore):
     def __init__(
         self,
         create_new: Optional[bool] = False,

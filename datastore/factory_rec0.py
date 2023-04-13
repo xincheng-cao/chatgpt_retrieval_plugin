@@ -2,7 +2,7 @@ from datastore.datastore import DataStore
 import os
 
 
-async def get_datastore(datastore:str,) -> DataStore:
+async def get_datastore(datastore:str,):
     #datastore = os.environ.get("DATASTORE")
     assert datastore is not None
 

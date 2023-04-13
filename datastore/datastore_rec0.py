@@ -10,7 +10,7 @@ from models.models import (
     QueryResult,
     QueryWithEmbedding,
 )
-from services.chunks import get_document_chunks
+from services.chunks_rec0 import get_document_chunks
 from services.openai import get_embeddings
 
 
