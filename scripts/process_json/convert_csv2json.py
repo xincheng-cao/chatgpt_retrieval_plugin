@@ -20,6 +20,13 @@ df=pd.read_csv('ctrip_hotels_details_202108_sanya.csv',
                #dtype='string',
                )
 incident_df=df[df['hotel_id'].isin([70304985,78059891,]) ]
+
+
+
+
+
+
+# desc
 def apply_fn4ext_hotel_id_desc(sz:pd.Series):
     temp={
         'id':sz['hotel_id'],
@@ -48,3 +55,24 @@ with open(file='./sanya_desc.json',mode='w') as f:
             indent=3,
         )
     )
+
+
+
+
+
+# coordinate
+def apply_fn4hotel_id_coord_ext(sz:pd.Series):
+    temp={
+        'id':sz['hotel_id'],
+        'lat_gd':sz['lat_gd'],
+        'lng_gd':sz['lng_gd'],
+    }
+    return pd.Series(temp)
+
+
+out_df:pd.DataFrame=df.apply(func=apply_fn4hotel_id_coord_ext,
+                axis=1,
+                )
+
+out_df.to_csv('sanya_coord.csv',sep='\x01',header=True,index=False,)
+
