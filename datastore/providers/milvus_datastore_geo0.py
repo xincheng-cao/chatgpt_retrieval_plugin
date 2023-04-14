@@ -37,7 +37,17 @@ MILVUS_PASSWORD = os.environ.get("MILVUS_PASSWORD")
 MILVUS_USE_SECURITY = False if MILVUS_PASSWORD is None else True
 
 MILVUS_INDEX_PARAMS = os.environ.get("MILVUS_INDEX_PARAMS")
+MILVUS_INDEX_PARAMS=json.dumps(
+    {
+        "metric_type": "L2",
+        "index_type": "HNSW",
+        "params": {"M": 8, "efConstruction": 64},
+    }
+)
 MILVUS_SEARCH_PARAMS = os.environ.get("MILVUS_SEARCH_PARAMS")
+MILVUS_SEARCH_PARAMS=json.dumps(
+    {"metric_type": 'L2', "params": {"ef": 10}},
+)
 MILVUS_CONSISTENCY_LEVEL = os.environ.get("MILVUS_CONSISTENCY_LEVEL")
 
 UPSERT_BATCH_SIZE = 100

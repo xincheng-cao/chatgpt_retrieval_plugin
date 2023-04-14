@@ -136,6 +136,23 @@ async def query_main(
         raise HTTPException(status_code=500, detail="Internal Service Error")
 
 
+@app.post(
+    "/query_geo0",
+    response_model=QueryResponse,
+)
+async def query_main(
+    request: QueryRequest = Body(...),
+):
+    try:
+        results = await datastore_geo0.query(
+            request.queries,
+        )
+        return QueryResponse(results=results)
+    except Exception as e:
+        print("Error:", e)
+        raise HTTPException(status_code=500, detail="Internal Service Error")
+
+
 @sub_app.post(
     "/query",
     response_model=QueryResponse,

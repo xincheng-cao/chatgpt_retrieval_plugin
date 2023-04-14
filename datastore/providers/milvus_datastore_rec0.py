@@ -570,6 +570,8 @@ class MilvusDataStore(datastore_rec0.DataStore):
                 elif field == "source":
                     filters.append("(" + field + ' == "' + str(value.value) + '")')
                 # Check equivalency of rest of string fields
+                elif value.startswith('in'):
+                    filters.append("( " +field+' '+value+ ' )')
                 else:
                     filters.append("(" + field + ' == "' + str(value) + '")')
         # Join all our expressions with `and``

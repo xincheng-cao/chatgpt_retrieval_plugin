@@ -14,6 +14,34 @@ from services.chunks import get_document_chunks
 from services.openai import get_embeddings
 
 
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
+
+
+def convert_coord_str2coord_vec(quries:list):
+    '''
+    input: a list of str
+    ['[18.375606327240487,109.7312463076794]', '[18.23683982786473,109.37310133493273]']
+
+    '''
+    coord_vec=[]
+    for query in quries:
+        query=query.replace('[','').replace(']','')\
+            .replace(' ','').replace('(','').replace(')','')\
+            .replace('\t','').replace('\n','').replace('\r','')
+        lat,lng=query.split(',')
+        if not (isfloat(lat) and isfloat(lng)):
+            lat,lng='0','0'
+        coord_vec.append(
+            [float(lat),float(lng),],
+        )
+    return coord_vec
+
+
 class DataStore(ABC):
     async def upsert(
         self, documents: List[Document], chunk_token_size: Optional[int] = None
@@ -56,11 +84,12 @@ class DataStore(ABC):
         """
         # get a list of of just the queries from the Query list
         query_texts = [query.query for query in queries]
-        query_embeddings = get_embeddings(query_texts)
+        #query_embeddings = get_embeddings(query_texts)
+        query_embeddings2=convert_coord_str2coord_vec(query_texts)
         # hydrate the queries with embeddings
         queries_with_embeddings = [
             QueryWithEmbedding(**query.dict(), embedding=embedding)
-            for query, embedding in zip(queries, query_embeddings)
+            for query, embedding in zip(queries, query_embeddings2)
         ]
         return await self._query(queries_with_embeddings)
 
