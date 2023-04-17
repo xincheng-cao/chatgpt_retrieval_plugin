@@ -209,7 +209,7 @@ async def startup():
 
 
 def start():
-    uvicorn.run("server.main_rec0_geo0:app", host="0.0.0.0", port=13000, reload=True)
+    uvicorn.run("server.main_rec0_geo0:app", host="0.0.0.0", port=13000, reload=False,)
 
 if __name__=="__main__":
     '''
