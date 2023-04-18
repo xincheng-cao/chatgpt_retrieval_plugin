@@ -69,13 +69,13 @@ def get_text_chunks(text: str, chunk_token_size: Optional[int]) -> List[str]:
             chunk_text.rfind("?"),
             chunk_text.rfind("!"),
             chunk_text.rfind(";"),
-            chunk_text.rfind(":"),
+            #chunk_text.rfind(":"),
             chunk_text.rfind("\n"),
             chunk_text.rfind('。'),
             chunk_text.rfind('？'),
             chunk_text.rfind('！'),
             chunk_text.rfind('；'),
-            chunk_text.rfind('：'),
+            #chunk_text.rfind('：'),
         )
 
         chunk_text_len=len(chunk_text)
