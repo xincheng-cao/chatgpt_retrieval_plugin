@@ -44,6 +44,7 @@ for i in range(out_df.shape[0]):
         {
             'id':str(out_df.iloc[i]['id'])+'_description',
             'text':out_df.iloc[i]['text'],
+            'source_id':str(out_df.iloc[i]['id']),
         }
     )
 
@@ -117,6 +118,7 @@ for col in col_list:
             {
                 'id': str(out_df.iloc[i]['id']) + '_'+col,
                 'text': out_df.iloc[i][col],
+                'source_id': str(out_df.iloc[i]['id']),
             }
         )
 
