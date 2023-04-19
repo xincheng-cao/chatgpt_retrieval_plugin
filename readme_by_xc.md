@@ -41,3 +41,18 @@ pytest ./tests/datastore/providers/milvus/test_milvus_datastore.py (run in pycha
 
 ### euclidean dist vs cos sim vs dot prod vs l2 norm
 ![](pics/l2_vs_cosine.png)
+
+
+
+
+
+### configure Milvus
+refer to: https://milvus.io/docs/configure-docker.md
+https://juejin.cn/post/6966524585458171940
+
+
+cd examples/docker/milvus
+
+wget https://raw.githubusercontent.com/milvus-io/milvus/v2.2.5/configs/milvus.yaml
+
+![](pics/Configure-Milvus-with-Docker-Compose-Milvus-documentation.png)
