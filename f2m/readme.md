@@ -11,12 +11,12 @@ The default value is /home/$user/milvusdm.
 wget https://raw.githubusercontent.com/milvus-io/milvus-tools/main/yamls/F2M.yaml
 
 
-##
+## updated on Jun 8th,2023
 load to milvus
 - f2m/load_3M2milvus.py
 
 check and add index
 - f2m/load_3M2milvus2.py
 
-testing query(failed)
+testing query(failed OOM @ collection.load())
 - f2m/load_3M2milvus3.py

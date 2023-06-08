@@ -56,3 +56,21 @@ cd examples/docker/milvus
 wget https://raw.githubusercontent.com/milvus-io/milvus/v2.2.5/configs/milvus.yaml
 
 ![](pics/Configure-Milvus-with-Docker-Compose-Milvus-documentation.png)
+
+
+
+## updated on Jun 8th,2023
+### desc
+- The repo I cloned from the official OpenAI repository located at https://github.com/openai/chatgpt-retrieval-plugin, commit ID 15b1169. It hasn't been updated to the latest version.
+- I made some modifications based on the official OpenAI repo and used Milvus DB as the backend vector database.
+- Then I added certain static information from Ctrip as input to Milvus.
+- This service is essentially a RESTful API for querying the vector database.
+### steps
+0. scripts/process_json/convert_csv2json.py: data pre-processing (to all kinds of jsons and coord csv)
+1. readme_by_xc.md: how to deploy milvus
+2. scripts/process_json/process_json_rec0.py: upsert to milvus (all the jsons like "sanya_foooooo.json" @ scripts/process_json/ are upsert to collection ctrip_hotel_cols_4_rec0. edit parameters: --filepath)
+3. server/main_rec0_geo0.sh: start restful api service
+4. server/te5t_rec0_geo0_0.py: how to test api service
+5. server/te5t_rec0_geo0_0.ipynb: how to interact w/ milvus use pymilvus ( and insert scripts/process_json/sanya_coord.csv use pymilvus directly to collection ctrip_hotel_cols_4_geo0)
+6. f2m/: the data is actually from another repo (https://github.com/xincheng-cao/langchain-ChatGLM) which uses faiss. and the scripts insert the vector(~3M,1024) into milvus
+
